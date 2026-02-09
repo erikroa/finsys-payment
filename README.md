@@ -98,3 +98,10 @@ Payment fraud creates direct revenue loss and damages customer trust. For fintec
 
 ## 🔄 Reproducibility
 ```bash
+git clone https://github.com/erikroa/finsys-payment.git
+cd finsys-payment
+python -m venv venv
+venv\Scripts\activate  # Windows
+pip install -r requirements.txt
+python analysis.py
+```
