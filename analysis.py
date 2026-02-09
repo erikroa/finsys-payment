@@ -9,7 +9,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Set style
+# style
 sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (12, 6)
 
@@ -18,13 +18,13 @@ print("PAYMENT PROCESSING OPERATIONS ANALYSIS")
 print("=" * 60)
 
 # ============================================
-# 1. LOAD DATA
+# 1. LOAD 
 # ============================================
 print("\n[1/5] Downloading dataset...")
 path = kagglehub.dataset_download("ealaxi/banksim1")
 print(f"✓ Dataset downloaded to: {path}")
 
-# Find the CSV file
+# CSV 
 import os
 csv_file = [f for f in os.listdir(path) if f.endswith('.csv')][0]
 df = pd.read_csv(os.path.join(path, csv_file))
@@ -32,7 +32,7 @@ df = pd.read_csv(os.path.join(path, csv_file))
 print(f"✓ Loaded {len(df):,} transactions")
 
 # ============================================
-# 2. QUICK DATA OVERVIEW
+# 2. DATA OVERVIEW
 # ============================================
 print("\n[2/5] Analyzing transaction patterns...")
 
@@ -41,7 +41,7 @@ print(f"\nTransaction Types:")
 print(df['category'].value_counts())
 
 # ============================================
-# 3. KEY OPERATIONAL METRICS
+# 3. KEY METRICS
 # ============================================
 print("\n[3/5] Calculating operational metrics...")
 
@@ -65,7 +65,7 @@ print("\n--- Operational Risk (Fraud Rate %) ---")
 print(fraud_rate.sort_values('Fraud Rate', ascending=False))
 
 # ============================================
-# 4. BUSINESS IMPACT CALCULATION
+# 4. BUSINESS IMPACT
 # ============================================
 print("\n[4/5] Calculating business impact...")
 
@@ -84,11 +84,11 @@ print(f"Revenue at Risk: ${fraud_volume:,.2f} ({fraud_volume/total_volume*100:.2
 print(f"\n💡 Potential Annual Savings (30% reduction): ${fraud_volume * 0.30:,.2f}")
 
 # ============================================
-# 5. CREATE VISUALIZATIONS
+# 5. VISUALIZATIONS
 # ============================================
 print("\n[5/5] Generating visualizations...")
 
-# Create images directory if it doesn't exist
+# Create images directory
 os.makedirs('images', exist_ok=True)
 
 # Chart 1: Transaction Volume
@@ -130,7 +130,7 @@ plt.tight_layout()
 plt.savefig('images/operations_dashboard.png', dpi=300, bbox_inches='tight')
 print("✓ Saved: images/operations_dashboard.png")
 
-# Chart 5: Simple summary chart
+# Chart 5: Summary chart
 fig, ax = plt.subplots(figsize=(10, 6))
 summary_data = avg_by_type[['Total Volume']].sort_values('Total Volume', ascending=True)
 summary_data.plot(kind='barh', ax=ax, color='teal', legend=False)
